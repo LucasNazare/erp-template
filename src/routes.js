@@ -103,6 +103,19 @@ export const routes =
             loggedIn: true,
             showOnMenu: true,
             showOnTopbar: false,
+            categories: [{
+                label: 'Meu Perfil',
+                name: 'meu-perfil',
+                iconElement: <ProfileIcon />,
+                subItems: [
+                    {
+                        name: 'subItem1',
+                        label: 'Sub Item 1',
+                        path: '/perfil/subItem1',
+                        contentElement: <Usuarios />,
+                    },
+                ],
+            }]
         },
         {
             label: 'Configurações',
