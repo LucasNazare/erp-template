@@ -23,7 +23,13 @@ export default function Login() {
         }
         try {
             // TODO: Fetch login from API to get JWT and set it in localStorage
-            const dumyResponse = { token: "123456", user: { name: "John Doe", img: "https://avatars.githubusercontent.com/u/67137854?v=4" } };
+            const dumyResponse = {
+                token: "123456", user: {
+                    name: "John Doe",
+                    img: "https://avatars.githubusercontent.com/u/67137854?v=4",
+                    title: "Agente Imobiliário",
+                }
+            };
             // Simulate a login
             login(dumyResponse);
 

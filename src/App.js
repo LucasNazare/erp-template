@@ -29,6 +29,14 @@ function App() {
               } />
 
 
+              <Route path="/vendas" exact element={
+                <LoggedIn>
+                  <DefaultTemplate>
+                    <Usuarios />
+                  </DefaultTemplate>
+                </LoggedIn>
+              } />
+
               <Route path="/financeiro" exact element={
                 <LoggedIn>
                   <DefaultTemplate>

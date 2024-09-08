@@ -6,39 +6,10 @@ import React, { useEffect, useState } from 'react'
 
 
 const drawerWidth = 240;
-const categories = [
-    {
-        label: 'Dashboard',
-        name: 'dashboard',
-        subItems: [
-            {
-                name: 'subItem1',
-                label: 'Sub Item 1',
-                path: '/dashboard/subItem1',
-            },
-            {
-                name: 'subItem2',
-                label: 'Sub Item 2',
-                path: '/dashboard/subItem2',
-            },
-        ],
-    },
-    {
-        label: 'Users',
-        name: 'users',
-        subItems: [
-            {
-                name: 'subItem1',
-                label: 'Sub Item 1',
-                path: '/users/subItem1',
-            },
-        ],
-    },
-];
 
-export default function Sidebar({ open, setOpen }) {
+
+export default function Sidebar({ categories = [], categorySelected, setCategorySelected, open, setOpen }) {
     const [mainImg, setMainImg] = useState(null);
-    const [categorySelected, setCategorySelected] = useState(null);
 
     useEffect(() => {
         //TODO: Fetch main image
@@ -55,12 +26,18 @@ export default function Sidebar({ open, setOpen }) {
             setCategorySelected(category);
     }
 
-    const categoryListItem = (category) => {
+    const categoryListItem = (category, index) => {
         return (
-            <Box>
+            <Box key={index}>
                 <ListItem button style={{ cursor: 'pointer' }} name={category.name} onClick={selectCategory}>
                     <ListItemIcon sx={{ userSelect: 'none' }}>
-                        <DashboardIcon />
+
+                        {
+                            category.iconElement ?
+                                category.iconElement
+                                :
+                                <DashboardIcon />
+                        }
                     </ListItemIcon>
                     <ListItemText primary={category.label} sx={{ userSelect: 'none' }} />
                     <KeyboardArrowDownIcon sx={[{
@@ -99,9 +76,9 @@ export default function Sidebar({ open, setOpen }) {
 
                 <Divider sx={{ m: 3 }} />
 
-                {categories.map((category) => {
+                {categories?.map((category, index) => {
                     return (
-                        categoryListItem(category)
+                        categoryListItem(category, index)
                     )
                 })}
             </List>
