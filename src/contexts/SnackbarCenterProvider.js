@@ -1,4 +1,4 @@
-import { Alert, Snackbar } from '@mui/material';
+import { Alert, AlertTitle, Snackbar } from '@mui/material';
 import React, { createContext, useEffect, useState } from 'react'
 
 export const SnackbarCenterContext = createContext()
@@ -8,6 +8,7 @@ export default function SnackbarCenterProvider({ children }) {
   const [snackPack, setSnackPack] = useState([]);
   const [messageInfo, setMessageInfo] = useState(undefined);
   const [severity, setSeverity] = useState('info');
+  const [title, setTitle] = useState('Title');
 
   const exampleNotification = {
     title: 'Title',
@@ -21,6 +22,7 @@ export default function SnackbarCenterProvider({ children }) {
       setMessageInfo({ ...snackPack[0] });
       setSeverity(snackPack[0]?.type);
       setSnackPack((prev) => prev.slice(1));
+      setTitle(snackPack[0]?.title);
       setOpen(true);
     } else if (snackPack.length && messageInfo && open) {
       // Close an active snack when a new one is added
@@ -59,9 +61,9 @@ export default function SnackbarCenterProvider({ children }) {
         autoHideDuration={3000}
         onClose={handleClose}
         TransitionProps={{ onExited: handleExited }}
-      // message={messageInfo ? messageInfo.message : undefined}
       >
-        <Alert severity={severity} onClose={handleClose}>
+        <Alert severity={severity} onClose={handleClose} variant='filled'>
+          {title ? <AlertTitle>{title}</AlertTitle> : undefined}
           {messageInfo ? messageInfo.message : undefined}
         </Alert>
 
