@@ -23,7 +23,7 @@ export default function Login() {
         }
         try {
             // TODO: Fetch login from API to get JWT and set it in localStorage
-            const dumyResponse = { token: "123456", user: { name: "John Doe" } };
+            const dumyResponse = { token: "123456", user: { name: "John Doe", img: "https://avatars.githubusercontent.com/u/67137854?v=4" } };
             // Simulate a login
             login(dumyResponse);
 
@@ -37,7 +37,7 @@ export default function Login() {
             <form onSubmit={handleLogin}>
                 <FormControl sx={{ width: '300px' }}>
                     <Typography variant="h1" sx={{ mb: 1, textAlign: 'center' }}>Login</Typography>
-                    <TextField label="Email" variant="outlined" sx={{ mb: 1 }} type='email' name='email' value={formData.email} onChange={handleChange} name="email" />
+                    <TextField label="Email" variant="outlined" sx={{ mb: 1 }} type='email' name='email' value={formData.email} onChange={handleChange} />
                     <TextField label="Password" variant="outlined" type="password" name='password' sx={{ mb: 1 }} value={formData.password} onChange={handleChange} />
 
                     <Button variant="contained" type='submit'>Login</Button>

@@ -50,6 +50,12 @@ const theme = createTheme({
             fontWeight: 500,
             color: darkGrey,
         },
+        appbarButton: {
+            fontSize: "1.0rem",
+            letterSpacing: "0.1em",
+            fontWeight: 500,
+            color: almostWhite,
+        },
     },
     components: {
         MuiButton: {
@@ -58,6 +64,13 @@ const theme = createTheme({
                     fontFamily: "Mulish, sans-serif",
                     textTransform: "none",
                     fontWeight: 800,
+                },
+            },
+        },
+        MuiLink: {
+            styleOverrides: {
+                root: {
+                    textDecoration: "none",
                 },
             },
         },

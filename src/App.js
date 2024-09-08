@@ -27,6 +27,16 @@ function App() {
                   </DefaultTemplate>
                 </LoggedIn>
               } />
+
+
+              <Route path="/financeiro" exact element={
+                <LoggedIn>
+                  <DefaultTemplate>
+                    <Usuarios />
+                  </DefaultTemplate>
+                </LoggedIn>
+              } />
+
             </Routes>
           </Router>
         </AuthProvider>
