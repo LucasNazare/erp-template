@@ -30,9 +30,10 @@ export default function SnackbarCenterProvider({ children }) {
     }
   }, [snackPack, messageInfo, open]);
 
-  const notify = (notification) => {
+  const notify = (message, type) => {
+    const notification = { message, type };
     // Check if notification is valid
-    if (!notification.title || !notification.message || !notification.type) {
+    if (!notification.message || !notification.type) {
       console.error('Invalid notification:', notification);
       console.log(`Expected: ${JSON.stringify(exampleNotification)}`);
       return;
@@ -63,8 +64,8 @@ export default function SnackbarCenterProvider({ children }) {
         TransitionProps={{ onExited: handleExited }}
       >
         <Alert severity={severity} onClose={handleClose} variant='filled'>
-          {title ? <AlertTitle>{title}</AlertTitle> : undefined}
-          {messageInfo ? messageInfo.message : undefined}
+          {messageInfo?.message ? <AlertTitle>{messageInfo.message}</AlertTitle> : undefined}
+          {/* {messageInfo ? messageInfo.message : undefined} */}
         </Alert>
 
       </Snackbar>
