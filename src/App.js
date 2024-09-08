@@ -6,6 +6,7 @@ import Login from './pages/Auth/Login';
 import { ThemeProvider } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
 import AuthProvider from './contexts/AuthProvider';
+import SnackbarCenterProvider from './contexts/SnackbarCenterProvider';
 
 
 
@@ -14,15 +15,17 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AuthProvider>
-        <Router>
-          <Routes>
-            <Route path="/" exact element={
-              <Usuarios />
-            } />
-          </Routes>
-        </Router>
-      </AuthProvider>
+      <SnackbarCenterProvider>
+        <AuthProvider>
+          <Router>
+            <Routes>
+              <Route path="/" exact element={
+                <Usuarios />
+              } />
+            </Routes>
+          </Router>
+        </AuthProvider>
+      </SnackbarCenterProvider>
     </ThemeProvider>
   );
 }
