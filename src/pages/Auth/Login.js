@@ -2,10 +2,12 @@ import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../contexts/AuthProvider'
 import { Box, Button, FormControl, TextField, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
+import { SnackbarCenterContext } from '../../contexts/SnackbarCenterProvider';
 
 
 export default function Login() {
     const { login } = useContext(AuthContext);
+    const { notify } = useContext(SnackbarCenterContext);
     const [formData, setFormData] = useState({
         email: '', password: ''
     });
@@ -18,7 +20,7 @@ export default function Login() {
         e.preventDefault();
         const { email, password } = formData;
         if (email === '' || password === '') {
-            alert('Preencha todos os campos');
+            notify('Preencha todos os campos', 'error');
             return;
         }
         try {
@@ -33,9 +35,10 @@ export default function Login() {
             // Simulate a login
             login(dumyResponse);
 
-            alert('Login efetuado com sucesso');
+            notify('Login efetuado com sucesso!', 'success');
         } catch (error) {
             console.error(error);
+            notify('Erro ao efetuar login.', 'error');
         }
     }
     return (
