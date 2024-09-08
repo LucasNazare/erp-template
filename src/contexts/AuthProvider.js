@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { SnackbarCenterContext } from './SnackbarCenterProvider';
+import LoadingScreen from '../templates/LoadingScreen';
 
 export const AuthContext = createContext()
 
@@ -48,6 +49,8 @@ export default function AuthProvider({ children }) {
     localStorage.removeItem('token');
     notify('Desconectado com sucesso!', 'success');
   }
+
+  if (loading) return <LoadingScreen />
 
   return (
     <AuthContext.Provider value={{ isLogged, setIsLogged, login, logout, loading, user }}>
