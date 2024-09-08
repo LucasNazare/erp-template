@@ -49,7 +49,7 @@ export default function DefaultTemplate({ showBreadcrumbs, children }) {
 
                 <Box sx={{ m: 3 }}>
 
-                    {showBreadcrumbs && <Breadcrumbs separator=">" sx={{ mb: 2 }}>
+                    {showBreadcrumbs && <Breadcrumbs separator="›" sx={{ mb: 2 }}>
                         <Link component={RouterLink} to={activePath}>
                             {
                                 routes.find(link => link.path === activePath)?.label
