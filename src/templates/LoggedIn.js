@@ -4,10 +4,8 @@ import Login from '../pages/Auth/Login';
 
 export default function LoggedIn({ children }) {
     const { isLogged } = useContext(AuthContext);
-    return (
-        <>
-            {isLogged && children}
-            {!isLogged && <Login />}
-        </>
-    )
+
+
+    if (!isLogged) return <Login />
+    return children;
 }

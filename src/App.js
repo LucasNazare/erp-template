@@ -14,6 +14,17 @@ import { routes } from './routes';
 
 
 function App() {
+
+  const createRouteElement = route => {
+    return route?.loggedIn ?
+      <LoggedIn>
+        <DefaultTemplate showBreadcrumbs={true}>
+          {route.contentElement}
+        </DefaultTemplate>
+      </LoggedIn>
+      : route.contentElement
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -25,30 +36,16 @@ function App() {
                 routes?.map((route, index) => {
                   return (
                     <>
-                      <Route key={index} path={route.path} element={
-                        <DefaultTemplate showBreadcrumbs={true}>
-                          {route?.loggedIn ?
-                            <LoggedIn>
-                              {route.contentElement}
-                            </LoggedIn>
-                            : route.contentElement
-                          }
-                        </DefaultTemplate>
+                      <Route key={route.path} path={route.path} element={
+                        createRouteElement(route)
                       } />
                       {route?.categories?.map((category, index) => {
                         return (
                           <>
                             {category?.subItems?.map((subItem, index) => {
                               return (
-                                <Route key={index} path={subItem.path} element={
-                                  <DefaultTemplate showBreadcrumbs={true}>
-                                    {route?.loggedIn ?
-                                      <LoggedIn>
-                                        {subItem.contentElement}
-                                      </LoggedIn>
-                                      : subItem.contentElement
-                                    }
-                                  </DefaultTemplate>
+                                <Route key={subItem.path} path={subItem.path} element={
+                                  createRouteElement(route)
                                 } />
                               )
                             })}
@@ -65,7 +62,7 @@ function App() {
           </Router>
         </AuthProvider>
       </SnackbarCenterProvider>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 }
 

@@ -8,7 +8,7 @@ export const AuthContext = createContext()
 export default function AuthProvider({ children }) {
   const { notify } = useContext(SnackbarCenterContext);
   const [isLogged, setIsLogged] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function AuthProvider({ children }) {
     notify('Desconectado com sucesso!', 'success');
   }
 
-  if (loading) return <LoadingScreen />
+  if (loading) return 'oi'//<LoadingScreen />
 
   return (
     <AuthContext.Provider value={{ isLogged, setIsLogged, login, logout, loading, user }}>
