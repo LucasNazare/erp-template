@@ -15,14 +15,14 @@ import { routes } from './routes';
 
 function App() {
 
-  const createRouteElement = route => {
-    return route?.loggedIn ?
+  const createRouteElement = (loggedIn, contentElement) => {
+    return loggedIn ?
       <LoggedIn>
         <DefaultTemplate showBreadcrumbs={true}>
-          {route.contentElement}
+          {contentElement}
         </DefaultTemplate>
       </LoggedIn>
-      : route.contentElement
+      : contentElement
   }
 
   return (
@@ -34,18 +34,22 @@ function App() {
             <Routes>
               {
                 routes?.map((route, index) => {
+                  if (route?.categories === undefined) {
+                    return (
+                      <Route key={route.path} path={route.path} element={
+                        createRouteElement(route.loggedIn, route.contentElement)
+                      } />
+                    )
+                  }
                   return (
                     <>
-                      <Route key={route.path} path={route.path} element={
-                        createRouteElement(route)
-                      } />
                       {route?.categories?.map((category, index) => {
                         return (
                           <>
                             {category?.subItems?.map((subItem, index) => {
                               return (
                                 <Route key={subItem.path} path={subItem.path} element={
-                                  createRouteElement(route)
+                                  createRouteElement(route.loggedIn, subItem.contentElement)
                                 } />
                               )
                             })}

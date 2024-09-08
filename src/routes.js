@@ -3,13 +3,14 @@ import UsersIcon from '@mui/icons-material/People';
 import WalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import ProfileIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
+import Perfil from "./pages/Perfil/Perfil";
 
 export const routes =
     [
         {
             label: 'CRM',
             path: '/crm',
-            contentElement: <Usuarios />,
+            // contentElement: <Usuarios />,
             loggedIn: true,
             showOnMenu: false,
             showOnTopbar: true,
@@ -46,7 +47,7 @@ export const routes =
                     {
                         name: 'subItem1',
                         label: 'Sub Item 1',
-                        path: '/crm/subItem1',
+                        path: '/crm/linducha',
                         contentElement: <Usuarios />,
                     },
                 ],
@@ -99,7 +100,7 @@ export const routes =
             label: 'Perfil',
             iconElement: <ProfileIcon />,
             path: '/perfil',
-            contentElement: <Usuarios />,
+            // contentElement: <Usuarios />,
             loggedIn: true,
             showOnMenu: true,
             showOnTopbar: false,
@@ -111,8 +112,8 @@ export const routes =
                     {
                         name: 'subItem1',
                         label: 'Sub Item 1',
-                        path: '/perfil/subItem1',
-                        contentElement: <Usuarios />,
+                        path: '/perfil/meu-perfil',
+                        contentElement: <Perfil />,
                     },
                 ],
             }]

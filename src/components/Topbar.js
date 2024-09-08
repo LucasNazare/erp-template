@@ -36,9 +36,10 @@ export default function Topbar({ navlinks, activePath, setIsDrawerOpen }) {
 
                     <Box sx={{ flexGrow: 1, userSelect: 'none' }}>
                         {navlinks?.map((navlink, index) => {
+                            const to = navlink.categories ? navlink?.categories[0].subItems[0].path : navlink.path;
                             return (
                                 navlink.showOnTopbar &&
-                                <Link key={index} component={RouterLink} to={navlink.path}>
+                                <Link key={index} component={RouterLink} to={to}>
                                     <Typography variant="appbarButton" sx={{ mr: 2, fontWeight: activePath === navlink.path ? 900 : 500 }}>
                                         {navlink.label}
                                     </Typography>
@@ -94,9 +95,10 @@ export default function Topbar({ navlinks, activePath, setIsDrawerOpen }) {
                             <Box>
                                 <MenuList>
                                     {navlinks?.map((navlink, index) => {
+                                        const to = navlink.categories ? navlink.categories[0].subItems[0].path : navlink.path;
                                         return (
                                             navlink.showOnMenu &&
-                                            <Link key={index} component={RouterLink} to={navlink.path} color='secondary'>
+                                            <Link key={index} component={RouterLink} to={to} color='secondary'>
                                                 <MenuItem>
 
                                                     <ListItemIcon>
