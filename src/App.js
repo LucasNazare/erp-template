@@ -8,6 +8,7 @@ import { CssBaseline } from '@mui/material';
 import AuthProvider from './contexts/AuthProvider';
 import SnackbarCenterProvider from './contexts/SnackbarCenterProvider';
 import DefaultTemplate from './templates/DefaultTemplate';
+import { routes } from './routes';
 
 
 
@@ -20,30 +21,45 @@ function App() {
         <AuthProvider>
           <Router>
             <Routes>
-              <Route path="/" exact element={
-                <LoggedIn>
-                  <DefaultTemplate>
-                    <Usuarios />
-                  </DefaultTemplate>
-                </LoggedIn>
-              } />
+              {
+                routes?.map((route, index) => {
+                  return (
+                    <>
+                      <Route key={index} path={route.path} element={
+                        <DefaultTemplate showBreadcrumbs={true}>
+                          {route?.loggedIn ?
+                            <LoggedIn>
+                              {route.contentElement}
+                            </LoggedIn>
+                            : route.contentElement
+                          }
+                        </DefaultTemplate>
+                      } />
+                      {route?.categories?.map((category, index) => {
+                        return (
+                          <>
+                            {category?.subItems?.map((subItem, index) => {
+                              return (
+                                <Route key={index} path={subItem.path} element={
+                                  <DefaultTemplate showBreadcrumbs={true}>
+                                    {route?.loggedIn ?
+                                      <LoggedIn>
+                                        {subItem.contentElement}
+                                      </LoggedIn>
+                                      : subItem.contentElement
+                                    }
+                                  </DefaultTemplate>
+                                } />
+                              )
+                            })}
+                          </>
+                        )
+                      })}
+                    </>
+                  )
+                })
 
-
-              <Route path="/vendas" exact element={
-                <LoggedIn>
-                  <DefaultTemplate>
-                    <Usuarios />
-                  </DefaultTemplate>
-                </LoggedIn>
-              } />
-
-              <Route path="/financeiro" exact element={
-                <LoggedIn>
-                  <DefaultTemplate>
-                    <Usuarios />
-                  </DefaultTemplate>
-                </LoggedIn>
-              } />
+              }
 
             </Routes>
           </Router>

@@ -7,7 +7,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../contexts/AuthProvider';
 
-export default function Topbar({ navlinks, menulinks, activePath }) {
+export default function Topbar({ navlinks, activePath, setIsDrawerOpen }) {
     const { user, logout } = useContext(AuthContext);
     const [menuAnchorEl, setMenuAnchorEl] = useState(null);
     const menuOpen = Boolean(menuAnchorEl);
@@ -28,6 +28,7 @@ export default function Topbar({ navlinks, menulinks, activePath }) {
                         color="inherit"
                         aria-label="menu"
                         sx={{ mr: 2, display: { md: 'none' } }}
+                        onClick={() => setIsDrawerOpen(true)}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -36,6 +37,7 @@ export default function Topbar({ navlinks, menulinks, activePath }) {
                     <Box sx={{ flexGrow: 1, userSelect: 'none' }}>
                         {navlinks?.map((navlink, index) => {
                             return (
+                                navlink.showOnTopbar &&
                                 <Link key={index} component={RouterLink} to={navlink.path}>
                                     <Typography variant="appbarButton" sx={{ mr: 2, fontWeight: activePath === navlink.path ? 900 : 500 }}>
                                         {navlink.label}
@@ -91,10 +93,11 @@ export default function Topbar({ navlinks, menulinks, activePath }) {
 
                             <Box>
                                 <MenuList>
-                                    {menulinks?.map((navlink, index) => {
+                                    {navlinks?.map((navlink, index) => {
                                         return (
-                                            <Link component={RouterLink} to={navlink.path} color='secondary'>
-                                                <MenuItem key={index}>
+                                            navlink.showOnMenu &&
+                                            <Link key={index} component={RouterLink} to={navlink.path} color='secondary'>
+                                                <MenuItem>
 
                                                     <ListItemIcon>
                                                         {navlink.iconElement ? navlink.iconElement : <SettingsIcon />}

@@ -1,4 +1,5 @@
-import { Box, Collapse, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Skeleton, SwipeableDrawer } from '@mui/material'
+import { Link as RouterLink } from 'react-router-dom';
+import { Box, Collapse, Divider, Drawer, Link, List, ListItem, ListItemIcon, ListItemText, Skeleton, SwipeableDrawer } from '@mui/material'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import logo from '../assets/imgs/KW_VALE.png';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -34,9 +35,9 @@ export default function Sidebar({ categories = [], categorySelected, setCategory
 
                         {
                             category.iconElement ?
-                                category.iconElement
+                                React.cloneElement(category.iconElement, { color: categorySelected === category.name ? 'primary' : 'secondary' })
                                 :
-                                <DashboardIcon />
+                                <DashboardIcon color={categorySelected === category.name ? 'primary' : 'secondary'} />
                         }
                     </ListItemIcon>
                     <ListItemText primary={category.label} sx={{ userSelect: 'none' }} />
@@ -51,9 +52,11 @@ export default function Sidebar({ categories = [], categorySelected, setCategory
                 <Collapse in={categorySelected === category.name} unmountOnExit>
                     {category?.subItems?.map((subItem) => {
                         return (
-                            <ListItem button sx={{ pt: 0, pb: 0 }} style={{ cursor: 'pointer' }}>
-                                <ListItemText primary={subItem?.label} sx={{ ml: 3, fontSize: '0.4rem', userSelect: 'none' }} />
-                            </ListItem>
+                            <Link component={RouterLink} to={subItem.path} key={subItem.name} color='secondary'>
+                                <ListItem button sx={{ pt: 0, pb: 0 }} style={{ cursor: 'pointer' }}>
+                                    <ListItemText primary={subItem?.label} sx={{ ml: 3, fontSize: '0.4rem', userSelect: 'none' }} />
+                                </ListItem>
+                            </Link>
                         )
                     })}
                 </Collapse>
