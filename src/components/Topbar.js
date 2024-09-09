@@ -98,9 +98,8 @@ export default function Topbar({ navlinks, activePath, setIsDrawerOpen }) {
                                         const to = navlink.categories ? navlink.categories[0].subItems[0].path : navlink.path;
                                         return (
                                             navlink.showOnMenu &&
-                                            <Link key={index} component={RouterLink} to={to} color='secondary'>
+                                            <Link key={index} component={RouterLink} to={to} color='secondary' onClick={handleCloseMenu}>
                                                 <MenuItem>
-
                                                     <ListItemIcon>
                                                         {navlink.iconElement ? navlink.iconElement : <SettingsIcon />}
                                                     </ListItemIcon>
