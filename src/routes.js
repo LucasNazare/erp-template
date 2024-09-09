@@ -4,6 +4,7 @@ import WalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import ProfileIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import Perfil from "./pages/Perfil/Perfil";
+import Pagamento from "./pages/Perfil/Pagamento";
 
 export const routes =
     [
@@ -119,7 +120,7 @@ export const routes =
                         name: 'alterar-senha',
                         label: 'Alterar Senha',
                         path: '/perfil/alterar-senha',
-                        contentElement: <Perfil />,
+                        contentElement: <Pagamento />,
                     },
                 ],
             },
@@ -132,7 +133,7 @@ export const routes =
                         name: 'contas-bancarias',
                         label: 'Contas Bancárias',
                         path: '/perfil/contas-bancarias',
-                        contentElement: <Usuarios />,
+                        contentElement: <Pagamento />,
                     },
                 ],
             }
