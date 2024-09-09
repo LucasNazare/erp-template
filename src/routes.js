@@ -110,13 +110,33 @@ export const routes =
                 iconElement: <ProfileIcon />,
                 subItems: [
                     {
-                        name: 'subItem1',
-                        label: 'Sub Item 1',
-                        path: '/perfil/meu-perfil',
+                        name: 'meus-dados',
+                        label: 'Meus Dados',
+                        path: '/perfil/meus-dados',
+                        contentElement: <Perfil />,
+                    },
+                    {
+                        name: 'alterar-senha',
+                        label: 'Alterar Senha',
+                        path: '/perfil/alterar-senha',
                         contentElement: <Perfil />,
                     },
                 ],
-            }]
+            },
+            {
+                label: 'Pagamento',
+                name: 'pagamento',
+                iconElement: <WalletIcon />,
+                subItems: [
+                    {
+                        name: 'contas-bancarias',
+                        label: 'Contas Bancárias',
+                        path: '/perfil/contas-bancarias',
+                        contentElement: <Usuarios />,
+                    },
+                ],
+            }
+            ]
         },
         {
             label: 'Configurações',

@@ -37,17 +37,22 @@ const theme = createTheme({
         },
         h4: {
             fontSize: "1.25rem",
-            fontWeight: 500,
+            fontWeight: 600,
             color: darkGrey,
         },
         h5: {
             fontSize: "1rem",
-            fontWeight: 500,
+            fontWeight: 700,
             color: darkGrey,
         },
         h6: {
             fontSize: ".85rem",
-            fontWeight: 500,
+            fontWeight: 800,
+            color: darkGrey,
+        },
+        label: {
+            fontSize: ".85rem",
+            fontWeight: 600,
             color: darkGrey,
         },
         appbarButton: {
@@ -71,6 +76,13 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     textDecoration: "none",
+                },
+            },
+        },
+        MuiTextField: {
+            styleOverrides: {
+                root: {
+                    width: "300px",
                 },
             },
         },
