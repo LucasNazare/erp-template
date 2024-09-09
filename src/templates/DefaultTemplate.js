@@ -40,7 +40,21 @@ export default function DefaultTemplate({ showBreadcrumbs, children }) {
             />
 
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    width: '100%',
+                    alignItems: {
+                        xs: 'center',    // Center for small screens
+                        md: 'flex-start' // Align left for medium and larger screens
+                    },
+                    justifyContent: {
+                        xs: 'center',    // Center vertically for small screens (optional)
+                        md: 'flex-start' // Default vertical alignment for medium and larger screens
+                    }
+                }}
+            >
                 <Topbar
                     navlinks={routes}
                     setIsDrawerOpen={setIsDrawerOpen}
