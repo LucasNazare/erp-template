@@ -40,46 +40,41 @@ export default function DefaultTemplate({ showBreadcrumbs, children }) {
             />
 
 
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    width: '100%',
-                    alignItems: {
-                        xs: 'center',    // Center for small screens
-                        md: 'flex-start' // Align left for medium and larger screens
-                    },
-                    justifyContent: {
-                        xs: 'center',    // Center vertically for small screens (optional)
-                        md: 'flex-start' // Default vertical alignment for medium and larger screens
-                    },
-                }}
-            >
+            <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                 <Topbar
                     navlinks={routes}
                     setIsDrawerOpen={setIsDrawerOpen}
                     activePath={activePath}
                 />
 
-                <Box sx={{
-                    p: 3, width: {
-                        xs: 'auto',
-                        md: '100%',
-                    }
-                }}>
+                <Box sx={{ m: 3 }}>
 
                     {showBreadcrumbs && <Breadcrumbs separator="›" sx={{ mb: 2 }}>
-                        <Link component={RouterLink} to={activePath}>
-                            {
-                                routes.find(link => link.path === activePath)?.label
+                        <Link
+                            component={RouterLink}
+                            to={
+                                routes.find(link => link.path === activePath)?.categories?.[0]?.subItems?.[0]?.path ||
+                                routes.find(link => link.path === activePath)?.path || location.pathname
+                            }
+                        >
+                            {routes.find(link => link.path === activePath)?.label}
+                        </Link>
+
+                        <Link
+                            component={RouterLink}
+                            to={
+                                location.pathname.split('/').length > 2
+                                    ? location.pathname.split('/').slice(0, 3).join('/')
+                                    : location.pathname
+                            }
+                        >
+                            {routes
+                                .find(link => link.path === activePath)
+                                ?.categories?.find(category => category.subItems?.find(subItem => subItem.path === location.pathname))
+                                ?.subItems?.find(subItem => subItem.path === location.pathname)?.label
                             }
                         </Link>
 
-                        <Link component={RouterLink} to={location.pathname}>
-                            {
-                                routes.find(link => link.path === activePath)?.categories?.find(category => category.subItems.find(subItem => subItem.path === location.pathname))?.subItems.find(subItem => subItem.path === location.pathname)?.label
-                            }
-                        </Link>
 
                     </Breadcrumbs>
                     }
