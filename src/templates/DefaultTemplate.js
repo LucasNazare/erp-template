@@ -61,7 +61,7 @@ export default function DefaultTemplate({ showBreadcrumbs, children }) {
                     activePath={activePath}
                 />
 
-                <Box sx={{ m: 3 }}>
+                <Box sx={{ m: 3, width: { xs: 'auto', md: '100%' } }}>
 
                     {showBreadcrumbs && <Breadcrumbs separator="›" sx={{ mb: 2 }}>
                         <Link

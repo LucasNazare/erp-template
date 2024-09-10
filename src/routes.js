@@ -5,6 +5,7 @@ import ProfileIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import Perfil from "./pages/Perfil/Perfil";
 import Pagamento from "./pages/Perfil/Pagamento";
+import AlterarSenha from "./pages/Perfil/AlterarSenha";
 
 export const routes =
     [
@@ -120,7 +121,7 @@ export const routes =
                         name: 'alterar-senha',
                         label: 'Alterar Senha',
                         path: '/perfil/alterar-senha',
-                        contentElement: <Pagamento />,
+                        contentElement: <AlterarSenha />,
                     },
                 ],
             },
