@@ -1,8 +1,8 @@
-import { Box, Button, Chip, Divider, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
 import React, { useContext, useState } from 'react'
+import { Alert, Box, Button, Divider, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
 import { SnackbarCenterContext } from '../../contexts/SnackbarCenterProvider';
 
-export default function Perfil() {
+export default function CadastroUsuario() {
     const { notify } = useContext(SnackbarCenterContext);
     const [submitFailed, setSubmitFailed] = useState(false);
 
@@ -48,27 +48,14 @@ export default function Perfil() {
 
     return (
         <Box sx={{ flexGrow: 1, width: '100%', }}>
-            <Typography sx={{ m: 1 }} variant='h1'>Meu Perfil</Typography>
+            <Typography sx={{ m: 1 }} variant='h1'>Cadastro de Usuário</Typography>
             <Divider />
             <form onSubmit={onSubmit}>
-                <FormControl sx={{ m: 1, gap: 1 }}>
 
-                    <Typography variant='h5' sx={{ ml: -1, mt: 1, mb: 1 }}>Informações Pessoais</Typography>
-                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Typography variant='label'>ID:</Typography>
-                        <Typography variant='body1'>01012021</Typography>
-                    </Box>
-                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Typography variant='label'>Data de Cadastro:</Typography>
-                        <Typography variant='body1'>01/01/2021</Typography>
-                    </Box>
-                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Typography variant='label'>Status da Conta:</Typography>
-                        <Chip label="Ativo" color="success" />
-                    </Box>
+                <FormControl sx={{ m: 1, gap: 1 }}>
                     <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-between', p: 1, gap: 5 }}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
-                            <Typography variant='h5' sx={{ ml: -1, mt: 1, mb: 1 }}>Informações Pessoais</Typography>
+                            <Typography variant='h5' sx={{ ml: -1, mt: 2, mb: 1 }}>Dados Pessoais</Typography>
                             <TextField
                                 label="Nome *"
                                 variant="outlined"
@@ -170,7 +157,6 @@ export default function Perfil() {
                                 </Select>
                             </FormControl>
                         </Box>
-
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                             <Typography variant='h5' sx={{ ml: -1, mt: 2, mb: 1 }}>Endereço</Typography>
                             <TextField
@@ -244,6 +230,6 @@ export default function Perfil() {
                     </Box>
                 </FormControl>
             </form>
-        </Box >
+        </Box>
     )
 }

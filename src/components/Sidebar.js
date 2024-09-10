@@ -52,6 +52,7 @@ export default function Sidebar({ categories = [], categorySelected, setCategory
                 <Collapse in={categorySelected === category.name} unmountOnExit>
                     {category?.subItems?.map((subItem) => {
                         return (
+                            !subItem.hide &&
                             <Link component={RouterLink} to={subItem.path} key={subItem.name} color='secondary'>
                                 <ListItem button sx={{ pt: 0, pb: 0 }} style={{ cursor: 'pointer' }}>
                                     <ListItemText primary={subItem?.label} sx={{ ml: 3, fontSize: '0.4rem', userSelect: 'none' }} />

@@ -6,6 +6,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import Perfil from "./pages/Perfil/Perfil";
 import Pagamento from "./pages/Perfil/Pagamento";
 import AlterarSenha from "./pages/Perfil/AlterarSenha";
+import CadastroUsuario from "./pages/Usuarios/CadastroUsuario";
 
 export const routes =
     [
@@ -95,6 +96,34 @@ export const routes =
                         path: '/financeiro/subItem1',
                         contentElement: <Usuarios />,
                     },
+                ],
+            }]
+        },
+        {
+            label: 'Administrativo',
+            path: '/administrativo',
+            contentElement: <Usuarios />,
+            loggedIn: true,
+            showOnMenu: false,
+            showOnTopbar: true,
+            categories: [{
+                label: 'Usuários',
+                name: 'usuarios',
+                iconElement: <WalletIcon />,
+                subItems: [
+                    {
+                        name: 'lista-usuarios',
+                        label: 'Lista de Usuários',
+                        path: '/administrativo/lista-usuarios',
+                        contentElement: <Usuarios />,
+                    },
+                    {
+                        name: 'cadastrar-usuario',
+                        label: 'Cadastrar Usuário',
+                        path: '/administrativo/cadastrar-usuario',
+                        contentElement: <CadastroUsuario />,
+                        hide: true,
+                    }
                 ],
             }]
         },
