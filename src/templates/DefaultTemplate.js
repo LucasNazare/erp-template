@@ -84,10 +84,11 @@ export default function DefaultTemplate({ showBreadcrumbs, children }) {
                         >
                             {routes
                                 .find(link => link.path === activePath)
-                                ?.categories?.find(category => category.subItems?.find(subItem => subItem.path === location.pathname))
-                                ?.subItems?.find(subItem => subItem.path === location.pathname)?.label
+                                ?.categories?.find(category => category.subItems?.find(subItem => subItem.path.includes(location.pathname)))
+                                ?.subItems?.find(subItem => subItem.path.includes(location.pathname))?.label
                             }
                         </Link>
+
 
 
                     </Breadcrumbs>

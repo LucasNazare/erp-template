@@ -7,6 +7,7 @@ import Perfil from "./pages/Perfil/Perfil";
 import Pagamento from "./pages/Perfil/Pagamento";
 import AlterarSenha from "./pages/Perfil/AlterarSenha";
 import CadastroUsuario from "./pages/Usuarios/CadastroUsuario";
+import EditarUsuario from "./pages/Usuarios/EditarUsuario";
 
 export const routes =
     [
@@ -122,6 +123,13 @@ export const routes =
                         label: 'Cadastrar Usuário',
                         path: '/administrativo/cadastrar-usuario',
                         contentElement: <CadastroUsuario />,
+                        hide: true,
+                    },
+                    {
+                        name: 'editar-usuario',
+                        label: 'Cadastrar Usuário',
+                        path: '/administrativo/editar-usuario/:id',
+                        contentElement: <EditarUsuario />,
                         hide: true,
                     }
                 ],

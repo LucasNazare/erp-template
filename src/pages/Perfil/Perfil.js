@@ -80,7 +80,7 @@ export default function Perfil() {
                             />
 
                             <TextField
-                                label="Email *"
+                                label="Email"
                                 variant="outlined"
                                 name="email"
                                 disabled
@@ -88,6 +88,7 @@ export default function Perfil() {
                                 onChange={handleFormChange}
                                 value={formState.email}
                                 error={submitFailed && !formState.email}
+
                             />
 
                             <TextField

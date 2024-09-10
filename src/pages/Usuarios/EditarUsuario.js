@@ -1,10 +1,15 @@
-import React, { useContext, useState } from 'react'
-import { Alert, Box, Button, Divider, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
+import React, { useContext, useEffect, useState } from 'react'
+import { Box, Button, Divider, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
 import { SnackbarCenterContext } from '../../contexts/SnackbarCenterProvider';
+import LoadingScreen from '../../templates/LoadingScreen';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function CadastroUsuario() {
+export default function EditarUsuario() {
+    const { id } = useParams();
+    const navigate = useNavigate();
     const { notify } = useContext(SnackbarCenterContext);
     const [submitFailed, setSubmitFailed] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     // universal state handler
     const [formState, setFormState] = useState({
@@ -24,6 +29,39 @@ export default function CadastroUsuario() {
         estado: '',
     });
 
+    useEffect(() => {
+        function fetchUserData() {
+            try {
+                console.log(id);
+                //TODO: Fetch user data
+                const dummyData = {
+                    nome: 'João da Silva',
+                    email: 'joaodasilva@mail.com',
+                    telefone: '(11) 99999-9999',
+                    CPF: '123.456.789-00',
+                    RG: '12.345.678-9',
+                    sexo: 'masculino',
+                    estadoCivil: 'solteiro',
+                    cep: '12345-678',
+                    logradouro: 'Rua das Flores',
+                    numero: '123',
+                    complemento: 'Apto 123',
+                    bairro: 'Jardim das Rosas',
+                    cidade: 'São Paulo',
+                    estado: 'SP',
+                }
+                setFormState(dummyData);
+            }
+            catch (err) {
+                notify('Erro ao buscar dados do usuário.', 'error');
+            }
+            finally {
+                setLoading(false);
+            }
+        }
+        fetchUserData();
+    }, []);
+
     const handleFormChange = (event) => {
         const { name, value } = event.target;
         setFormState({ ...formState, [name]: value });
@@ -38,17 +76,20 @@ export default function CadastroUsuario() {
         }
         try {
             //TODO: send data to backend
-            notify('Usuário cadastrado com sucesso.', 'success');
+            notify('Alteração realizada com sucesso.', 'success');
+            navigate('/administrativo/lista-usuarios');
         }
         catch (err) {
             setSubmitFailed(true);
-            notify('Erro ao cadastrar usuário.', 'error');
+            notify('Erro ao alterar dados.', 'error');
         }
     }
 
+    if (loading) <LoadingScreen />
+
     return (
         <Box sx={{ flexGrow: 1, width: '100%', }}>
-            <Typography sx={{ m: 1 }} variant='h1'>Cadastro de Usuário</Typography>
+            <Typography sx={{ m: 1 }} variant='h1'>Editar Usuário</Typography>
             <Divider />
             <form onSubmit={onSubmit}>
                 <FormControl sx={{ m: 1, gap: 1 }}>
@@ -69,6 +110,7 @@ export default function CadastroUsuario() {
                                 label="Email *"
                                 variant="outlined"
                                 name="email"
+                                disabled
                                 fullWidth
                                 onChange={handleFormChange}
                                 value={formState.email}
@@ -221,7 +263,7 @@ export default function CadastroUsuario() {
                             />
 
                             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' }}>
-                                <Button type='submit' variant="contained" color="primary" sx={{ m: 1 }}>Cadastrar Usuário</Button>
+                                <Button type='submit' variant="contained" color="primary" sx={{ m: 1 }}>Salvar Alterações</Button>
                             </Box>
                         </Box>
 

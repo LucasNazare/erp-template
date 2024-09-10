@@ -19,7 +19,11 @@ export default function Usuarios() {
 
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', p: 1 }}>
                 <Typography variant='body1'>Meu conteúdo</Typography>
+
             </Box>
+            <Link component={RouterLink} to='/administrativo/editar-usuario/1'>
+                <Button variant='contained'>Editar Usuário</Button>
+            </Link>
 
         </Box >
 
