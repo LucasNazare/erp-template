@@ -5,14 +5,17 @@ const darkGrey = "#212529";
 const lightGrey = "#373f51";
 const almostWhite = "#FEFEFE";
 
+export const primary = "#0099a7";
+export const secondary = "#282b33";
+
 const theme = createTheme({
     palette: {
         mode: "light",
         primary: {
-            main: "#0099a7",
+            main: primary
         },
         secondary: {
-            main: "#282b33",
+            main: secondary
         },
         background: {
             default: almostWhite,
@@ -61,6 +64,11 @@ const theme = createTheme({
             fontWeight: 500,
             color: almostWhite,
         },
+        tableHeader: {
+            fontSize: ".9rem",
+            fontWeight: 700,
+            color: almostWhite,
+        },
     },
     components: {
         MuiButton: {
@@ -85,6 +93,42 @@ const theme = createTheme({
                     width: "300px",
                 },
             },
+        },
+        MuiTableHead: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: secondary
+                },
+            },
+        },
+        MuiTableSortLabel: {
+            styleOverrides: {
+                root: {
+                    color: almostWhite, // Default color for TableSortLabel
+                    '&:hover': {
+                        color: almostWhite, // Color on hover
+                    },
+                    '&.Mui-active': {
+                        color: lightGrey, // Color when active (sorted)
+                    },
+                    '&.Mui-active .MuiTableSortLabel-icon': {
+                        color: almostWhite, // Color of the sort icon when active
+                    },
+                },
+            },
+        },
+        MuiCheckbox: {
+            variants: [
+                {
+                    props: { variant: 'tableHeader' },
+                    style: {
+                        color: almostWhite,
+                        '&.Mui-checked': {
+                            color: primary,
+                        },
+                    },
+                },
+            ],
         },
     },
 });

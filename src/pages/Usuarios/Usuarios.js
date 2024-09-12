@@ -1,8 +1,9 @@
-import { Box, Button, Divider, Link, Typography } from '@mui/material'
+import { Box, Button, Divider, Grid2, Link, Typography } from '@mui/material'
 import React, { useContext } from 'react'
 import { SnackbarCenterContext } from '../../contexts/SnackbarCenterProvider'
 import { AuthContext } from '../../contexts/AuthProvider';
 import { Link as RouterLink } from 'react-router-dom';
+import SmartTable from '../../components/SmartTable';
 
 export default function Usuarios() {
     const { notify } = useContext(SnackbarCenterContext);
@@ -10,16 +11,34 @@ export default function Usuarios() {
     return (
         <Box sx={{ flexGrow: 1, width: '100%', }}>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', p: 1 }}>
-                <Typography variant='h1'>Usuários</Typography>
+                <Typography variant='h1' sx={{ pr: 2 }}>Usuários</Typography>
                 <Link component={RouterLink} to='/administrativo/cadastrar-usuario'>
                     <Button variant='contained'>Cadastrar Usuário</Button>
                 </Link>
             </Box>
             <Divider />
 
-            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', p: 1 }}>
-                <Typography variant='body1'>Meu conteúdo</Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', p: 1 }}>
+                <Grid2 container>
+                    <Grid2 size={{ xs: 12, sm: 3 }}>
+                        Card
+                    </Grid2>
 
+                    <Grid2 size={{ xs: 12, sm: 3 }}>
+                        Card
+                    </Grid2>
+                    <Grid2 size={{ xs: 12, sm: 3 }}>
+                        Card
+                    </Grid2>
+                    <Grid2 size={{ xs: 12, sm: 3 }}>
+                        Card
+                    </Grid2>
+                </Grid2>
+                <Typography variant='h5' sx={{ p: 1 }}>Meu conteúdo</Typography>
+
+                <Box sx={{ maxWidth: '80vw', overflowX: 'auto' }}>
+                    <SmartTable />
+                </Box>
             </Box>
             <Link component={RouterLink} to='/administrativo/editar-usuario/1'>
                 <Button variant='contained'>Editar Usuário</Button>
