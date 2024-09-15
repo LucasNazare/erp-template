@@ -20,6 +20,18 @@ const theme = createTheme({
         background: {
             default: almostWhite,
         },
+        error: {
+            main: red[500],
+        },
+        success: {
+            main: green[500],
+        },
+        info: {
+            main: "#00a8cc",
+        },
+        warning: {
+            main: "#f6cd61",
+        },
     },
     typography: {
         fontFamily: "Mulish, sans-serif",

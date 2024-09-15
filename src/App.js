@@ -9,9 +9,9 @@ import AuthProvider from './contexts/AuthProvider';
 import SnackbarCenterProvider from './contexts/SnackbarCenterProvider';
 import DefaultTemplate from './templates/DefaultTemplate';
 import { routes } from './routes';
-
-
-
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import 'dayjs/locale/pt-br';
 
 function App() {
 
@@ -28,44 +28,46 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <SnackbarCenterProvider>
-        <AuthProvider>
-          <Router>
-            <Routes>
-              {
-                routes?.map((route, index) => {
-                  if (route?.categories === undefined) {
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='pt-br'>
+        <SnackbarCenterProvider>
+          <AuthProvider>
+            <Router>
+              <Routes>
+                {
+                  routes?.map((route, index) => {
+                    if (route?.categories === undefined) {
+                      return (
+                        <Route key={route.path} path={route.path} element={
+                          createRouteElement(route.loggedIn, route.contentElement)
+                        } />
+                      )
+                    }
                     return (
-                      <Route key={route.path} path={route.path} element={
-                        createRouteElement(route.loggedIn, route.contentElement)
-                      } />
+                      <>
+                        {route?.categories?.map((category, index) => {
+                          return (
+                            <>
+                              {category?.subItems?.map((subItem, index) => {
+                                return (
+                                  <Route key={subItem.path} path={subItem.path} element={
+                                    createRouteElement(route.loggedIn, subItem.contentElement)
+                                  } />
+                                )
+                              })}
+                            </>
+                          )
+                        })}
+                      </>
                     )
-                  }
-                  return (
-                    <>
-                      {route?.categories?.map((category, index) => {
-                        return (
-                          <>
-                            {category?.subItems?.map((subItem, index) => {
-                              return (
-                                <Route key={subItem.path} path={subItem.path} element={
-                                  createRouteElement(route.loggedIn, subItem.contentElement)
-                                } />
-                              )
-                            })}
-                          </>
-                        )
-                      })}
-                    </>
-                  )
-                })
+                  })
 
-              }
+                }
 
-            </Routes>
-          </Router>
-        </AuthProvider>
-      </SnackbarCenterProvider>
+              </Routes>
+            </Router>
+          </AuthProvider>
+        </SnackbarCenterProvider>
+      </LocalizationProvider>
     </ThemeProvider >
   );
 }
